@@ -1,4 +1,5 @@
 import subprocess
+import re
 
 NANOBENCH_DIR = "../nanoBench" 
 ASM = "ADD RAX, RBX; ADD RBX, RAX"
@@ -54,9 +55,9 @@ def n_regs(sz, n):
 
 
 def latency_single(asm_temp, sz):
-    args = n_regs(sz, asm_temp.count("{}"))
+    args = n_regs(sz, len(re.findall(r"\{\d*\}", asm_temp)))
     inst1 = asm_temp.format(*args)
-    inst2 = asm_temp.format(*args.reverse())
+    inst2 = asm_temp.format(*args[::-1])
     asm = inst1 + "; " + inst2
 
     cycles, insts = test_single(asm)
