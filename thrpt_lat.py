@@ -62,9 +62,9 @@ def thruput_single(asm_temp, sz):
 
     cycles, insts = test_single(asm)
 
-    thruput = cycles / insts
+    thruput = insts / cycles
 
-    print(f"throughput = {thruput}")
+    print(f"inverse throughput = {thruput}")
 
     return thruput
 
@@ -84,13 +84,40 @@ def latency_single(asm_temp, sz):
 
     return latency
 
+one_arg_temp = r"{mn} {0}"
+two_arg_temp = r"{mn} {0}, {1}"
+two_arg_with_imm_temp = r"{mn} {0}, 1"
+
+inst_dict = {
+    "add" : two_arg_temp.replace("{mn}","ADD"),
+    "add_with_imm" : two_arg_with_imm_temp.replace("{mn}","ADD"),
+    "mov" : two_arg_temp.replace("{mn}","MOV"),
+    "mov_with_imm" : two_arg_with_imm_temp.replace("{mn}","MOV"),
+    "not" : one_arg_temp.replace("{mn}","NOT"),
+    "or" : two_arg_temp.replace("{mn}","OR"),
+    "or_with_imm" : two_arg_with_imm_temp.replace("{mn}","OR"),
+}
+
+def thruputs():
+    for name, inst in inst_dict.items():
+        print(f"Inverse throughput for instruction {name}:")
+        thruput_single(inst, "QW")
+
+    return
+
+def latencies():
+    for name, inst in inst_dict.items():
+        print(f"Latency for instruction {name}:")
+        latency_single(inst, "QW")
+
+    return
 
 def main():
     add_temp = r"ADD {0}, {1}"
     sz = "QW"
 
-    thruput_single(add_temp, sz)
-    latency_single(add_temp, sz)
+    thruputs()
+    latencies()
 
     # with open(out_file, "w") as f:
     #         f.write(stdout)
