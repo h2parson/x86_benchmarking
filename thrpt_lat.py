@@ -16,20 +16,27 @@ def test_single(asm, out_file):
         text=True,
     )
 
-    stdout, stderr = result.stdout, result.stderr
+    lines, stderr = result.stdout.splitlines(), result.stderr
 
     if stderr is not None and stderr != "":
         print(f"Skipping line \"{asm}\", due to stderr output of \"{stderr}\"!")
         return None
 
-    with open(out_file, "w") as f:
-        f.write(stdout)
+    for line in lines:
+        if line.startswith("CORE_CYCLES:"):
+            cycles = line.split(" ")[1]
+        elif line.startswith("INST_RETIRED:"):
+            insts = line.split(" ")[1]
 
-    print(f"\nOutput saved to {out_file}")
+    print(f"Cycles = {cycles}")
+    print(f"insts = {insts}")
 
 
 def main():
     test_single(ASM, OUT_FILE)
+
+    # with open(out_file, "w") as f:
+    #         f.write(stdout)
 
 if __name__ == "__main__":
     main()
