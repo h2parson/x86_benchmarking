@@ -8,7 +8,7 @@ OUT_FILE = "nanobench_output.txt"
 # -----------------------------
 
 def test_single(asm):
-    cmd = ["sudo", "./nanoBench.sh", "-asm", asm, "-config", CONFIG]
+    cmd = ["sudo", "./nanoBench.sh", "-asm", asm, "-config", CONFIG, "-unroll_count=500"]
 
     result = subprocess.run(
         cmd,
