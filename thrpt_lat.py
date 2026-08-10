@@ -54,9 +54,10 @@ def n_regs(sz, n):
     return None
 
 def thruput_single(asm_temp, sz):
-    args = n_regs(sz, 2*len(re.findall(r"\{\d*\}", asm_temp)))
-    inst1 = asm_temp.format(*(args[:n_regs/2]))
-    inst2 = asm_temp.format(*(args[n_regs/2:]))
+    n = len(re.findall(r"\{\d*\}", asm_temp))
+    args = n_regs(sz, 2*n)
+    inst1 = asm_temp.format(*(args[:n+1]))
+    inst2 = asm_temp.format(*(args[n+1:]))
     asm = inst1
 
     cycles, insts = test_single(asm)
@@ -69,7 +70,8 @@ def thruput_single(asm_temp, sz):
 
 
 def latency_single(asm_temp, sz):
-    args = n_regs(sz, len(re.findall(r"\{\d*\}", asm_temp)))
+    n = len(re.findall(r"\{\d*\}", asm_temp))
+    args = n_regs(sz, n)
     inst1 = asm_temp.format(*args)
     inst2 = asm_temp.format(*args[::-1])
     asm = inst1 + "; " + inst2
