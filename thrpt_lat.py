@@ -2,7 +2,7 @@ import subprocess
 
 NANOBENCH_DIR = "../nanoBench" 
 ASM = "ADD RAX, RBX; ADD RBX, RAX"
-CONFIG = "configs/cfg_IceLake_common.txt"
+CONFIG = "configs/cfg_Bonnell_common.txt"
 OUT_FILE = "nanobench_output.txt"
 # -----------------------------
 
