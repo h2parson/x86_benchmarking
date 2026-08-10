@@ -56,9 +56,9 @@ def n_regs(sz, n):
 def thruput_single(asm_temp, sz):
     n = len(re.findall(r"\{\d*\}", asm_temp))
     args = n_regs(sz, 2*n)
-    inst1 = asm_temp.format(*(args[:n+1]))
-    inst2 = asm_temp.format(*(args[n+1:]))
-    asm = inst1
+    inst1 = asm_temp.format(*(args[:n]))
+    inst2 = asm_temp.format(*(args[n:]))
+    asm = inst1 + "; " + inst2
 
     cycles, insts = test_single(asm)
 
