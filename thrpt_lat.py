@@ -53,6 +53,19 @@ def n_regs(sz, n):
         return ymm_regs[:n]
     return None
 
+def thruput_single(asm_temp, sz):
+    args = n_regs(sz, len(re.findall(r"\{\d*\}", asm_temp)))
+    inst1 = asm_temp.format(*args)
+    asm = inst1
+
+    cycles, insts = test_single(asm)
+
+    thruput = cycles / insts
+
+    print(f"throughput = {thruput}")
+
+    return thruput
+
 
 def latency_single(asm_temp, sz):
     args = n_regs(sz, len(re.findall(r"\{\d*\}", asm_temp)))
@@ -73,6 +86,7 @@ def main():
     add_temp = r"ADD {0}, {1}"
     sz = "QW"
 
+    thruput_single(add_temp, sz)
     latency_single(add_temp, sz)
 
     # with open(out_file, "w") as f:
