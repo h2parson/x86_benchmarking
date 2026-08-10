@@ -25,9 +25,9 @@ def test_single(asm):
 
     for line in lines:
         if line.startswith("CORE_CYCLES:"):
-            cycles = line.split(" ")[1]
+            cycles = float(line.split(" ")[1])
         elif line.startswith("INST_RETIRED:"):
-            insts = line.split(" ")[1]
+            insts = float(line.split(" ")[1])
 
     return cycles, insts
 
