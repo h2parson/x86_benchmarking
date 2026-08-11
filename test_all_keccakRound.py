@@ -21,6 +21,9 @@ def test(src, unroll=None):
 
     output = result.stdout + result.stderr
 
+    print(f"Results from: {src}")
+    print(output + "\n")
+
     return output
 
 def main(unroll=None):
@@ -36,7 +39,7 @@ def main(unroll=None):
             for path in sorted(files):
                 res = test(path, unroll=unroll)
                 file.write(f"Results from: {path}\n")
-                file.write(res)
+                file.write(res + "\n")
 
 if __name__ == "__main__":
     if len(sys.argv) == 2:
