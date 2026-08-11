@@ -36,7 +36,7 @@ def test(src, unroll=None):
 
 def main():
     for unroll in [1,2,3,4,6,10]:
-        out = f'results_unroll_{unroll}.csv'
+        out = f'results_unroll_{str(unroll)}.csv'
         with open(out, "w", newline='') as file:
             fieldnames = ['name', 'cycles', 'insts', 'cacherefs']
             writer = csv.DictWriter(file, fieldnames=fieldnames)
@@ -51,7 +51,7 @@ def main():
                     return
 
                 for path in sorted(files):
-                    res = test(path, unroll=unroll)
+                    res = test(path, unroll=str(unroll))
                     print(f"results from {path}:")
                     print(res)
                     data.append(res)
