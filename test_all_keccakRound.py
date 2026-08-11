@@ -35,7 +35,7 @@ def test(src, unroll=None):
     return {'name':str(src), 'cycles':cycles, 'insts':insts, 'cacherefs':cacherefs}
 
 def main():
-    for unroll in [1,2,3,4,6,10]:
+    for unroll in [1,2,10]:
         out = f'results_unroll_{str(unroll)}.csv'
         with open(out, "w", newline='') as file:
             fieldnames = ['name', 'cycles', 'insts', 'cacherefs']

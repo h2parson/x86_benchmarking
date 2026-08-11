@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 """
 For every file in a given directory, replace its contents with only lines
-355 to 566 (1-indexed, inclusive), stripping everything from the first
-occurrence of '//' onward on each line, and trimming leading/trailing
-whitespace from each resulting line.
+571 to 782 (1-indexed, inclusive). For each of those lines:
+
+  1. Find the SECOND occurrence of "//" and strip everything from that
+     point onward (i.e. truncate the line right before the second "//").
+     If there is no second occurrence, the line is left untruncated.
+  2. In what remains, remove the FIRST occurrence of "//" itself (just
+     those two characters), keeping the text before and after it intact.
+  3. Strip leading/trailing whitespace.
 
 Usage:
-    python process_files.py /path/to/directory [--dry-run]
+    python process_files2.py /path/to/directory [--dry-run]
 
 --dry-run prints what would happen without modifying any files.
 """
@@ -15,8 +20,30 @@ import argparse
 import sys
 from pathlib import Path
 
-START_LINE = 355
-END_LINE = 566
+START_LINE = 571
+END_LINE = 782
+MARKER = "//"
+
+
+def process_line(line: str) -> str:
+    # Find first and second occurrences of "//"
+    first_idx = line.find(MARKER)
+    second_idx = -1
+    if first_idx != -1:
+        second_idx = line.find(MARKER, first_idx + len(MARKER))
+
+    # Step 1: truncate right before the second occurrence, if it exists
+    if second_idx != -1:
+        line = line[:second_idx]
+
+    # Step 2: remove the first occurrence of "//" (just the marker itself),
+    # keeping text before and after it
+    idx = line.find(MARKER)
+    if idx != -1:
+        line = line[:idx] + line[idx + len(MARKER):]
+
+    # Step 3: strip leading/trailing whitespace
+    return line.strip()
 
 
 def process_file(path: Path, dry_run: bool = False) -> None:
@@ -30,23 +57,14 @@ def process_file(path: Path, dry_run: bool = False) -> None:
         print(f"Skipping {path} (could not read: {e})")
         return
 
-    # Slice lines 355-566 (1-indexed, inclusive) -> 0-indexed [354:566]
+    # Slice lines 571-782 (1-indexed, inclusive) -> 0-indexed [570:782]
     selected = lines[START_LINE - 1:END_LINE]
 
     if not selected:
         print(f"Skipping {path} (fewer than {START_LINE} lines, nothing in range)")
         return
 
-    processed = []
-    for line in selected:
-        # Strip everything after and including the first "//"
-        idx = line.find("//")
-        if idx != -1:
-            line = line[:idx]
-        # Strip leading/trailing whitespace
-        line = line.strip()
-        processed.append(line)
-
+    processed = [process_line(line) for line in selected]
     new_content = "\n".join(processed) + "\n"
 
     if dry_run:
