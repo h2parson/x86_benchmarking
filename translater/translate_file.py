@@ -12,10 +12,13 @@ def main(file_path, out_file):
 
         with open(out_file, "w", encoding="utf-8") as file:
             for line in intel_code.lines[:-1]:
-                file.write(line.text + "; ")
+                if line.text is not None:
+                    file.write(line.text + "; ")
             line = intel_code.lines[-1]
             file.write(line.text)
 
 if __name__ == "__main__":
-    main('./keccakRound/keccakRound_MACROPARAMS-rdi_rsp_0x0_1__SPLITPARAMS-3_1_6_2.s', \
-          './translater/keccakRound_MACROPARAMS-rdi_rsp_0x0_1__SPLITPARAMS-3_1_6_2.s')
+    # main('./keccakRound/keccakRound_MACROPARAMS-rdi_rsp_0x0_1__SPLITPARAMS-3_1_6_2.s', \
+    #       './translater/keccakRound_MACROPARAMS-rdi_rsp_0x0_1__SPLITPARAMS-3_1_6_2.s')
+
+    main('./keccakRound/keccakRound_orig_rdi_rsp_0x0_1.s', './translater/orig_formatted.s')
