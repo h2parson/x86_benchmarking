@@ -32,7 +32,7 @@ def test(src, unroll=None):
         elif line.startswith('L1D_CACHE.ALL_REF:'):
             cacherefs = float(line.split(" ")[1])
 
-    return {'name':src, 'cycles':cycles, 'insts':insts, 'cacherefs':cacherefs}
+    return {'name':str(src), 'cycles':cycles, 'insts':insts, 'cacherefs':cacherefs}
 
 def main():
     for unroll in [1,2,3,4,6,10]:
