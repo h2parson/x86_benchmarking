@@ -1,6 +1,7 @@
 import subprocess
 import sys
 from pathlib import Path
+import csv
 
 NANOBENCH_DIR = "../nanoBench" 
 CONFIG = "configs/cfg_Bonnell_common.txt"
@@ -19,30 +20,44 @@ def test(src, unroll=None):
             text=True,
         )
 
-    output = result.stdout + result.stderr
+    out, _ = result.stdout, result.stderr
 
-    print(f"Results from: {src}")
-    print(output + "\n")
+    # Now extract the data
+    lines = out.splitlines()
+    for line in lines:
+        if line.startswith("CORE_CYCLES:"):
+            cycles = float(line.split(" ")[1])
+        elif line.startswith("INST_RETIRED:"):
+            insts = float(line.split(" ")[1])
+        elif line.startswith('L1D_CACHE.ALL_REF:'):
+            cacherefs = float(line.split(" ")[1])
 
-    return output
+    return {'name':src, 'cycles':cycles, 'insts':insts, 'cacherefs':cacherefs}
 
-def main(unroll=None):
-    with open('test_all_results.txt', "w", encoding="utf-8") as file:
-        for src in ['keccakRound_translated','keccakRound_translated_originals']:
-            src_dir = Path(src)
+def main():
+    for unroll in [1,2,3,4,6,10]:
+        out = f'results_unroll_{unroll}.csv'
+        with open(out, "w", newline='') as file:
+            fieldnames = ['name', 'cycles', 'insts', 'cacherefs']
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            data = []
 
-            files = [p for p in src_dir.iterdir() if p.is_file()]
-            if not files:
-                print(f"No files found in {src_dir}")
-                return
+            for src in ['keccakRound_translated','keccakRound_translated_originals']:
+                src_dir = Path(src)
 
-            for path in sorted(files):
-                res = test(path, unroll=unroll)
-                file.write(f"Results from: {path}\n")
-                file.write(res + "\n")
+                files = [p for p in src_dir.iterdir() if p.is_file()]
+                if not files:
+                    print(f"No files found in {src_dir}")
+                    return
+
+                for path in sorted(files):
+                    res = test(path, unroll=unroll)
+                    print(f"results from {path}:")
+                    print(res)
+                    data.append(res)
+
+                writer.writeheader()
+                writer.writerows(data)
 
 if __name__ == "__main__":
-    if len(sys.argv) == 2:
-        main(unroll=sys.argv[1])
-    else:
-        main()
+    main()
