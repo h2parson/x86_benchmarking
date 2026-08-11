@@ -1,0 +1,212 @@
+xor 56(%rdi), %rdx
+mov %rsi, %r9
+rol %r9
+xor 64(%rdi), %r8
+xor 144(%rdi), %r8
+mov %rbp, %rbx
+mov 24(%rdi), %r13
+xor 136(%rdi), %rdx
+rol %rbx
+xor 104(%rdi), %r13
+xor %r15, %rbx
+mov 16(%rdi), %r14
+xor %r8, %r13
+mov %r15, %r8
+mov 96(%rdi), %r12
+xor 96(%rdi), %r14
+rol %r8
+xor %r13, %r9
+xor %rdx, %r14
+mov %r13, %rdx
+xor %r14, %r8
+mov %r14, %rcx
+rol %rdx
+rol %rcx
+xor %rbp, %rdx
+xor %rdx, %r12
+xor %rsi, %rcx
+mov 48(%rdi), %r11
+mov $0x0, %r15
+mov 0(%rdi), %r10
+xor %rcx, %r11
+mov 144(%rdi), %r13
+rol $43, %r12
+xor %rbx, %r10
+rol $44, %r11
+xor %r10, %r15
+xor %r8, %r13
+mov %r11, %rsi
+mov 192(%rdi), %rax
+rol $21, %r13
+or %r12, %rsi
+xor %r15, %rsi
+xor %r9, %rax
+rol $14, %rax
+mov %r13, %r14
+and %rax, %r14
+mov %r10, %r15
+xor %r12, %r14
+not %r12
+and %r11, %r15
+xor %rax, %r15
+mov %r14, 16(%rsp)
+or %r10, %rax
+mov 24(%rdi), %r10
+or %r13, %r12
+mov 176(%rdi), %r14
+xor %r11, %r12
+mov 72(%rdi), %r11
+mov %r12, 8(%rsp)
+xor %r8, %r10
+rol $28, %r10
+xor %r13, %rax
+xor %r9, %r11
+mov 80(%rdi), %r12
+xor %rdx, %r14
+mov %rax, 24(%rsp)
+rol $20, %r11
+xor %rbx, %r12
+rol $3, %r12
+mov %r11, %r13
+rol $61, %r14
+or %r12, %r13
+xor %r10, %r13
+mov %r14, %rax
+mov %r13, 40(%rsp)
+or %r10, %rax
+and %r11, %r10
+mov 128(%rdi), %r13
+xor %r14, %r10
+mov %rsi, 0(%rsp)
+mov %r10, 72(%rsp)
+xor %rcx, %r13
+rol $45, %r13
+not %r14
+xor %r13, %rax
+mov %rax, 64(%rsp)
+mov %r12, %rax
+and %r13, %rax
+or %r14, %r13
+xor %r12, %r13
+mov 104(%rdi), %r12
+xor %r11, %rax
+mov %r13, 56(%rsp)
+xor %r8, %r12
+mov 152(%rdi), %r13
+rol $25, %r12
+mov 56(%rdi), %r11
+mov %r12, %r14
+xor %r9, %r13
+rol $8, %r13
+xor %rdx, %r11
+and %r13, %r14
+rol $6, %r11
+mov %rax, 48(%rsp)
+xor %r11, %r14
+mov %r14, 88(%rsp)
+not %r13
+mov %r11, %rax
+mov 8(%rdi), %r14
+or %r12, %rax
+mov 160(%rdi), %r10
+xor %rcx, %r14
+mov %r15, 32(%rsp)
+rol $1, %r14
+xor %rbx, %r10
+rol $18, %r10
+xor %r14, %rax
+mov %rax, 80(%rsp)
+mov %r10, %rax
+or %r14, %rax
+and %r11, %r14
+xor %r13, %rax
+mov 40(%rdi), %r11
+mov %rax, 104(%rsp)
+mov %r13, %rax
+and %r10, %rax
+mov 136(%rdi), %r13
+xor %r10, %r14
+mov 32(%rdi), %r10
+xor %r12, %rax
+mov 88(%rdi), %r12
+mov %rax, 96(%rsp)
+xor %r9, %r10
+xor %rbx, %r11
+mov %r14, 112(%rsp)
+rol $36, %r11
+xor %rcx, %r12
+rol $10, %r12
+mov %r11, %rax
+and %r12, %rax
+rol $27, %r10
+xor %r10, %rax
+mov 168(%rdi), %r14
+xor %rdx, %r13
+mov %rax, 120(%rsp)
+xor %rcx, %r14
+mov 184(%rdi), %rax
+rol $15, %r13
+mov %r12, %rcx
+or %r13, %rcx
+not %r13
+xor %r11, %rcx
+or %r10, %r11
+mov %rcx, 128(%rsp)
+xor %r8, %rax
+rol $56, %rax
+mov %r13, %rcx
+xor %rax, %r11
+or %rax, %rcx
+and %r10, %rax
+mov 120(%rdi), %r10
+xor %r12, %rcx
+mov %r11, 152(%rsp)
+xor %rbx, %r10
+mov 64(%rdi), %r11
+rol $2, %r14
+xor %r8, %r11
+mov 16(%rdi), %rbx
+mov %rcx, 136(%rsp)
+mov %r14, %r8
+rol $41, %r10
+xor %rdx, %rbx
+rol $62, %rbx
+mov %r10, %rdx
+rol $55, %r11
+mov %rbx, %r12
+and %r14, %rdx
+and %r11, %r12
+xor %r14, %r12
+xor %r13, %rax
+or %rbx, %r8
+mov %r12, 192(%rsp)
+not %r11
+mov 112(%rdi), %r12
+mov %rax, 144(%rsp)
+xor %r10, %r8
+xor %r9, %r12
+mov %r8, 184(%rsp)
+rol $39, %r12
+mov %r11, %rax
+mov %r12, %rcx
+and %r12, %rax
+xor %rbx, %rax
+or %r10, %rcx
+xor %r12, %rdx
+mov %rax, 160(%rsp)
+xor %r11, %rcx
+mov %rdx, 176(%rsp)
+mov %rcx, 168(%rsp)
+
+
+
+
+
+
+
+
+
+
+
+
+

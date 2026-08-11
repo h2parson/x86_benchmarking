@@ -1,16 +1,3 @@
-mov 16(%rdi), %r11
-mov %rbp, %rbx
-xor 64(%rdi), %r8
-mov %rsi, %r9
-xor 96(%rdi), %r11
-rol %rbx
-xor %r15, %rbx
-mov 24(%rdi), %r12
-xor 144(%rdi), %r8
-rol %r9
-xor 104(%rdi), %r12
-mov $0x0, %r13
-xor %r8, %r12
 mov %r15, %r8
 xor 56(%rdi), %rdx
 xor %r12, %r9
@@ -197,16 +184,3 @@ xor %r10, %rax
 mov %rax, 120(%rsp)
 xor %rcx, %r8
 mov %r8, 184(%rsp)
-
-
-
-
-
-
-
-
-
-
-
-
-
