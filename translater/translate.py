@@ -198,7 +198,8 @@ class Instruction:
         text = text[len(preamble)+len(label):]
         return text
     
-    def consume_whitespace(self, text):
+    def consume_whitespace(self, text, commas=None):
+        _ = commas # commas not used here
         regexp_txt = r"^\s+"
         match = re.match(regexp_txt, text)
         # If no match was found then return trivial result to indicate
@@ -222,13 +223,14 @@ class Instruction:
             raise Exception(f"Mmnemonic in {text} is invalid!")
         text = res
 
-        # no arg mmnemonics
+        # An instruction with no arguments which had no trailing whitespace succeeds here if no text reamins 
         no_args_insts = ['nop']
-        success = False
-        if res in no_args_insts:
-            success = True
+        if self.mmnemonic in no_args_insts and res == '':
+            return
 
         # parse first argument if any
+        success = False
+
         for consumer_name in self.arg_consumers:
             consumer = getattr(self, consumer_name)
             res = consumer(text, commas=False)
@@ -236,6 +238,10 @@ class Instruction:
                 text = res
                 success = True
                 break
+
+        # An instruction with no arguments which had trailing whitespace succeeds here if the whitespace was stripped 
+        if self.mmnemonic in no_args_insts and res == '':
+            return
 
         if not success:
             raise Exception(f"Portion {text} of line {self.text} could not be parsed!")
