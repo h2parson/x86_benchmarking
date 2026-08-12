@@ -1,4 +1,4 @@
-import translate as t
+import translater.translate as t
 import sys
 
 def main(file_path, out_file):
