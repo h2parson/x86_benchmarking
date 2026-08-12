@@ -9,7 +9,7 @@ CONFIG = "configs/cfg_Bonnell_common.txt"
 def main(path, start, end):
     # Get the desired lines
     with open(path, "r") as file_in:
-        lines = file_in.readlines()[start:end+1]
+        lines = file_in.readlines()[start-1:end] # Use human indices not zero indexed
         # Write them to temp file 0
         with open("temp0.s", "w") as file0:
             for line in lines:
