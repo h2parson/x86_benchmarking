@@ -35,8 +35,8 @@ def main(path, start, end):
         print(out+err)
 
     # clean up temp files
-    os.remove("temp0.txt")
-    os.remove("temp1.txt")
+    os.remove("temp0.s")
+    os.remove("temp1.s")
 
 if __name__ == "__main__":
     # args are file name, start line, end line
