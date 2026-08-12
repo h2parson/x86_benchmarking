@@ -18,7 +18,4 @@ def main(file_path, out_file):
             file.write(line.text)
 
 if __name__ == "__main__":
-    # main('./keccakRound/keccakRound_MACROPARAMS-rdi_rsp_0x0_1__SPLITPARAMS-3_1_6_2.s', \
-    #       './translater/keccakRound_MACROPARAMS-rdi_rsp_0x0_1__SPLITPARAMS-3_1_6_2.s')
-
-    main('./keccakRound/keccakRound_orig_rdi_rsp_0x0_1.s', './translater/orig_formatted.s')
+    main(sys.argv[1], sys.argv[2])
