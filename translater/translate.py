@@ -222,9 +222,13 @@ class Instruction:
             raise Exception(f"Mmnemonic in {text} is invalid!")
         text = res
 
-        # parse first argument if any
+        # no arg mmnemonics
+        no_args_insts = ['nop']
         success = False
+        if res in no_args_insts:
+            success = True
 
+        # parse first argument if any
         for consumer_name in self.arg_consumers:
             consumer = getattr(self, consumer_name)
             res = consumer(text, commas=False)
