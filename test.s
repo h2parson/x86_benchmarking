@@ -1,27 +1,5 @@
 mov $0x0, %rax
 mov 24(%rdi), %r13
-mov 144(%rdi), %r11
-rol %rcx
-xor %rbp, %rdx
-xor %r8, %r11
-mov 96(%rdi), %r10
-xor %rsi, %rcx
-rol $21, %r11
-xor %r13, %r9
-xor %rdx, %r10
-mov %r11, %r13
-mov 48(%rdi), %r14
-mov 192(%rdi), %rsi
-rol $43, %r10
-xor %rcx, %r14
-xor %r9, %rsi
-rol $44, %r14
-and %r14, %r15
-rol $14, %rsi
-and %rsi, %r13
-xor %rsi, %r15
-or %r12, %rsi
-xor %r10, %r13
 xor %r11, %rsi
 mov 72(%rdi), %r12
 mov %rsi, 24(%rsp)
