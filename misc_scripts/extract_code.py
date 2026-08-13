@@ -30,6 +30,9 @@ def process_file(path: Path, dry_run: bool = False) -> None:
         print(f"Skipping {path} (could not read: {e})")
         return
 
+    first = lines[0].strip()
+    stalls = first.split(' ')[1]
+
     # Slice lines 355-566 (1-indexed, inclusive) -> 0-indexed [354:566]
     selected = lines[START_LINE - 1:END_LINE]
 
@@ -57,6 +60,7 @@ def process_file(path: Path, dry_run: bool = False) -> None:
         with open(path, "w", encoding="utf-8") as f:
             f.write(new_content)
         print(f"Rewrote {path} ({len(processed)} lines)")
+        return stalls
     except OSError as e:
         print(f"Failed to write {path}: {e}")
 
@@ -81,8 +85,13 @@ def main():
         print(f"No files found in {target_dir}")
         return
 
+    stall_list = []
+
     for path in sorted(files):
-        process_file(path, dry_run=args.dry_run)
+        stall_list.append(process_file(path, dry_run=args.dry_run))
+
+    print("stalls in order:")
+    print(stall_list)
 
 
 if __name__ == "__main__":
