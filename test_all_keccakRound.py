@@ -42,7 +42,7 @@ def main():
             writer = csv.DictWriter(file, fieldnames=fieldnames)
             data = []
 
-            for src in ['keccakRound_translated','keccakRound_translated_originals']:
+            for src in ['keccakRound_translated']:
                 src_dir = Path(src)
 
                 files = [p for p in src_dir.iterdir() if p.is_file()]
