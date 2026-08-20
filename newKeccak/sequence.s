@@ -1,26 +1,26 @@
 subq		$8*25, %rsp
 
-movq		0(rpState), rCa             
-movq		8(rpState), rCe
-movq		32(rpState), rCu
+movq		0(%rdi), rCa             
+movq		8(%rdi), rCe
+movq		32(%rdi), rCu
 
-xorq		40(rpState), rCa             
-xorq		48(rpState), rCe
-xorq		72(rpState), rCu             
+xorq		40(%rdi), rCa             
+xorq		48(%rdi), rCe
+xorq		72(%rdi), rCu             
 
-xorq		80(rpState), rCa             
-xorq		88(rpState), rCe
-xorq		14*8(rpState), rCu             
+xorq		80(%rdi), rCa             
+xorq		88(%rdi), rCe
+xorq		14*8(%rdi), rCu             
 
-xorq		15*8(rpState), rCa             
-xorq		16*8(rpState), rCe
-xorq		19*8(rpState), rCu             
+xorq		15*8(%rdi), rCa             
+xorq		16*8(%rdi), rCe
+xorq		19*8(%rdi), rCu             
 
-xorq		20*8(rpState), rCa
-xorq		21*8(rpState), rCe
-movq		22*8(rpState), rDi
-movq		23*8(rpState), rDo
-xorq		24*8(rpState), rCu
+xorq		20*8(%rdi), rCa
+xorq		21*8(%rdi), rCe
+movq		22*8(%rdi), rDi
+movq		23*8(%rdi), rDo
+xorq		24*8(%rdi), rCu
 
 xor 64(%rdi), %r8
 mov %rbp, %rbx
