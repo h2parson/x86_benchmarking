@@ -9,11 +9,12 @@ CONFIG = "configs/cfg_Bonnell_common.txt"
 def main(path, start, end):
     # Get the desired lines
     with open(path, "r") as file_in:
-        lines = file_in.readlines()[int(start)-355:int(end)-354] # Use human indices not zero indexed
+        lines = file_in.readlines() # Use human indices not zero indexed
         # Write them to temp file 0
         with open("temp0.s", "w") as file0:
             for line in lines:
-                file0.write(line)
+                if line is not None:
+                    file0.write(line)
 
     # translate it into temp file 1
     t.main("temp0.s", 'temp1.s')
