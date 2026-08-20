@@ -682,7 +682,8 @@ class Code:
         text = []
         try:
             for line in self.lines:
-                text.append(self.write_line(line))
+                if line.text is not None:
+                    text.append(self.write_line(line))
         except:
             raise Exception("Failed to write code in requested syntax!")
         return text

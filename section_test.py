@@ -41,5 +41,5 @@ def main(path, start, end):
 
 if __name__ == "__main__":
     # args are file name, start line, end line
-    main(sys.argv[1], sys.argv[2], sys.argv[3])
-    # main('keccakRound/keccakRound_MACROPARAMS-rdi_rsp_0x0_0__SPLITPARAMS-4_1_8_2.s', '355', '358')
+    # main(sys.argv[1], sys.argv[2], sys.argv[3])
+    main('newKeccak/sequence.s', '355', '358')

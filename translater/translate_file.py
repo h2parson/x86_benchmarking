@@ -15,7 +15,8 @@ def main(file_path, out_file):
                 if line.text is not None:
                     file.write(line.text + "; ")
             line = intel_code.lines[-1]
-            file.write(line.text)
+            if line.text is not None:
+                file.write(line.text)
 
 if __name__ == "__main__":
     main(sys.argv[1], sys.argv[2])
