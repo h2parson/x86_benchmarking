@@ -1,26 +1,26 @@
 subq		$8*25, %rsp
 
-movq		0(%rdi), rCa             
-movq		8(%rdi), rCe
-movq		32(%rdi), rCu
+movq		0(%rdi), %rsi             
+movq		8(%rdi), %rbp
+movq		32(%rdi), %r15
 
-xorq		40(%rdi), rCa             
-xorq		48(%rdi), rCe
-xorq		72(%rdi), rCu             
+xorq		40(%rdi), %rsi             
+xorq		48(%rdi), %rbp
+xorq		72(%rdi), %r15             
 
-xorq		80(%rdi), rCa             
-xorq		88(%rdi), rCe
-xorq		14*8(%rdi), rCu             
+xorq		80(%rdi), %rsi             
+xorq		88(%rdi), %rbp
+xorq		14*8(%rdi), %r15             
 
-xorq		15*8(%rdi), rCa             
-xorq		16*8(%rdi), rCe
-xorq		19*8(%rdi), rCu             
+xorq		15*8(%rdi), %rsi             
+xorq		16*8(%rdi), %rbp
+xorq		19*8(%rdi), %r15             
 
-xorq		20*8(%rdi), rCa
-xorq		21*8(%rdi), rCe
-movq		22*8(%rdi), rDi
-movq		23*8(%rdi), rDo
-xorq		24*8(%rdi), rCu
+xorq		20*8(%rdi), %rsi
+xorq		21*8(%rdi), %rbp
+movq		22*8(%rdi), %rdx
+movq		23*8(%rdi), %r8
+xorq		24*8(%rdi), %r15
 
 xor 64(%rdi), %r8
 mov %rbp, %rbx
