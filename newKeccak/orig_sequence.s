@@ -1727,7 +1727,6 @@ xor %r13, %r8
 mov %rdx, 176(%rdi)
 mov %r8, 184(%rdi)
 
-
 mov %rbp, %rbx
 rol %rbx
 mov 16(%rdi), %r12
@@ -2154,7 +2153,6 @@ xor %r13, %r8
 mov %rdx, 176(%rdi)
 mov %r8, 184(%rdi)
 
-
 mov %rbp, %rbx
 rol %rbx
 mov 16(%rdi), %r12
@@ -2580,7 +2578,6 @@ xor %r12, %rdx
 xor %r13, %r8
 mov %rdx, 176(%rdi)
 mov %r8, 184(%rdi)
-
 
 
 mov %rbp, %rbx
@@ -4288,7 +4285,6 @@ xor %r13, %r8
 mov %rdx, 176(%rdi)
 mov %r8, 184(%rdi)
 
-
 mov %rbp, %rbx
 rol %rbx
 mov 16(%rdi), %r12
@@ -4714,7 +4710,6 @@ xor %r12, %rdx
 xor %r13, %r8
 mov %rdx, 176(%rdi)
 mov %r8, 184(%rdi)
-
 
 mov %rbp, %rbx
 rol %rbx
