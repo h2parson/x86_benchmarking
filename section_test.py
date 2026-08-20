@@ -9,7 +9,7 @@ CONFIG = "configs/cfg_Bonnell_common.txt"
 def main(path, start, end):
     # Get the desired lines
     with open(path, "r") as file_in:
-        lines = file_in.readlines() # Use human indices not zero indexed
+        lines = file_in.readlines()[int(start)-355:int(end)-354] # Use human indices not zero indexed
         # Write them to temp file 0
         with open("temp0.s", "w") as file0:
             for line in lines:
@@ -41,5 +41,5 @@ def main(path, start, end):
 
 if __name__ == "__main__":
     # args are file name, start line, end line
-    # main(sys.argv[1], sys.argv[2], sys.argv[3])
-    main('newKeccak/sequence.s', '355', '358')
+    main(sys.argv[1], sys.argv[2], sys.argv[3])
+    # main('keccakRound/keccakRound_MACROPARAMS-rdi_rsp_0x0_0__SPLITPARAMS-4_1_8_2.s', '355', '358')
