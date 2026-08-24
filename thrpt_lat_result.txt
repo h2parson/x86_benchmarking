@@ -1,0 +1,96 @@
+Inverse throughput for instruction add:
+inverse throughput = 0.5
+Inverse throughput for instruction add_with_imm:
+inverse throughput = 0.5
+Inverse throughput for instruction mov:
+inverse throughput = 0.5
+Inverse throughput for instruction mov_with_imm:
+inverse throughput = 0.875
+Inverse throughput for instruction mov_from_ptr:
+inverse throughput = 1.0
+Inverse throughput for instruction mov_to_ptr:
+inverse throughput = 1.0
+Inverse throughput for instruction mov_imm_to_ptr:
+inverse throughput = 1.0
+Inverse throughput for instruction mov_from_ptr_with_offset:
+inverse throughput = 1.0
+Inverse throughput for instruction mov_to_ptr_with_offset:
+inverse throughput = 1.0
+Inverse throughput for instruction mov_imm_to_ptr_with_offset:
+inverse throughput = 1.0
+Inverse throughput for instruction not:
+inverse throughput = 0.5
+Inverse throughput for instruction or:
+inverse throughput = 0.5
+Inverse throughput for instruction pop:
+inverse throughput = 1.0
+Inverse throughput for instruction push:
+inverse throughput = 1.0
+Inverse throughput for instruction rol_with_imm:
+inverse throughput = 1.0
+Inverse throughput for instruction rol_with_implicit_shift:
+inverse throughput = 1.0
+Inverse throughput for instruction shr_with_imm:
+inverse throughput = 1.0
+Inverse throughput for instruction sub_with_imm:
+inverse throughput = 0.5
+Inverse throughput for instruction xchg:
+inverse throughput = 6.0
+Inverse throughput for instruction xor_with_imm:
+inverse throughput = 0.5
+Inverse throughput for instruction xor:
+inverse throughput = 0.5
+Inverse throughput for instruction xor_from_ptr_with_offset:
+inverse throughput = 1.0
+Inverse throughput for instruction xor_to_ptr_with_offset:
+inverse throughput = 1.0
+Inverse throughput for instruction xor_imm_to_ptr_with_offset:
+inverse throughput = 1.0
+Latency for instruction add:
+latency = 1.0
+Latency for instruction add_with_imm:
+latency = 1.0
+Latency for instruction mov:
+latency = 1.0
+Latency for instruction mov_with_imm:
+latency = 1.0
+Latency for instruction mov_from_ptr:
+latency not tested!
+Latency for instruction mov_to_ptr:
+latency not tested!
+Latency for instruction mov_imm_to_ptr:
+latency not tested!
+Latency for instruction mov_from_ptr_with_offset:
+latency not tested!
+Latency for instruction mov_to_ptr_with_offset:
+latency not tested!
+Latency for instruction mov_imm_to_ptr_with_offset:
+latency not tested!
+Latency for instruction not:
+latency = 1.0
+Latency for instruction or:
+latency = 1.0
+Latency for instruction pop:
+latency = 1.0
+Latency for instruction push:
+latency = 1.0
+Latency for instruction rol_with_imm:
+latency = 1.0
+Latency for instruction rol_with_implicit_shift:
+latency = 1.0
+Latency for instruction shr_with_imm:
+latency = 1.0
+Latency for instruction sub_with_imm:
+latency = 1.0
+Latency for instruction xchg:
+latency = 6.0
+Latency for instruction xor_with_imm:
+latency = 1.0
+Latency for instruction xor:
+latency = 1.0
+Latency for instruction xor_from_ptr_with_offset:
+latency not tested!
+Latency for instruction xor_to_ptr_with_offset:
+latency not tested!
+Latency for instruction xor_imm_to_ptr_with_offset:
+latency not tested!
