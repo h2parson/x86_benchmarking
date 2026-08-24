@@ -8,7 +8,8 @@ OUT_FILE = "nanobench_output.txt"
 # -----------------------------
 
 def test_single(asm):
-    cmd = ["sudo", "./nanoBench.sh", "-asm", asm, "-config", CONFIG, "-unroll_count=500"]
+    asm_init = "MOV RAX, R14; MOV RBX, R14; MOV RCX, R14; MOV RDX, R14;"
+    cmd = ["sudo", "./nanoBench.sh", "-asm_init", asm_init, "-asm", asm, "-config", CONFIG, "-unroll_count=500"]
 
     result = subprocess.run(
         cmd,
@@ -66,14 +67,16 @@ def thruput_single(asm_temp, sz):
 
     print(f"inverse throughput = {thruput}")
 
-    return thruput
-
 
 def latency_single(asm_temp, sz):
     n = len(re.findall(r"\{\d*\}", asm_temp))
     args = n_regs(sz, n)
     inst1 = asm_temp.format(*args)
-    inst2 = asm_temp.format(*args[::-1])
+    if "ptr" not in asm_temp:
+        inst2 = asm_temp.format(*args[::-1])
+    else:
+        print("latency not tested!")
+        return 
     asm = inst1 + "; " + inst2
 
     cycles, insts = test_single(asm)
@@ -82,23 +85,21 @@ def latency_single(asm_temp, sz):
 
     print(f"latency = {latency}")
 
-    return latency
-
 one_arg_temp                        = r"{mn} {0}"
 two_arg_temp                        = r"{mn} {0}, {1}"
 two_arg_with_imm_temp               = r"{mn} {0}, 1"
 two_arg_from_ptr_temp               = r"{mn} {0}, {ptr_sz} ptr[{1}]"
 two_arg_to_ptr_temp                 = r"{mn} {ptr_sz} ptr[{0}], {1}"
 two_arg_imm_to_ptr_temp             = r"{mn} {ptr_sz} ptr[{0}], 1"
-two_arg_from_ptr_with_offset_temp   = r"{mn} {0}, {ptr_sz} ptr[{1}+1]"
-two_arg_to_ptr_with_offset_temp     = r"{mn} {ptr_sz} ptr[{0}+1], {1}"
-two_arg_imm_to_ptr_with_offset_temp = r"{mn} {ptr_sz} ptr[{0}+1], 1"
+two_arg_from_ptr_with_offset_temp   = r"{mn} {0}, {ptr_sz} ptr[{1}+8]"
+two_arg_to_ptr_with_offset_temp     = r"{mn} {ptr_sz} ptr[{0}+8], {1}"
+two_arg_imm_to_ptr_with_offset_temp = r"{mn} {ptr_sz} ptr[{0}+8], 1"
 
 inst_dict = {
-    # "add"                        : two_arg_temp.replace("{mn}","ADD"),
-    # "add_with_imm"               : two_arg_with_imm_temp.replace("{mn}","ADD"),
-    # "mov"                        : two_arg_temp.replace("{mn}","MOV"),
-    # "mov_with_imm"               : two_arg_with_imm_temp.replace("{mn}","MOV"),
+    "add"                        : two_arg_temp.replace("{mn}","ADD"),
+    "add_with_imm"               : two_arg_with_imm_temp.replace("{mn}","ADD"),
+    "mov"                        : two_arg_temp.replace("{mn}","MOV"),
+    "mov_with_imm"               : two_arg_with_imm_temp.replace("{mn}","MOV"),
     "mov_from_ptr"               : two_arg_from_ptr_temp.replace("{mn}", "MOV"),
     "mov_to_ptr"                 : two_arg_to_ptr_temp.replace("{mn}", "MOV"),
     "mov_imm_to_ptr"             : two_arg_imm_to_ptr_temp.replace("{mn}", "MOV"),
