@@ -63,7 +63,7 @@ def thruput_single(asm_temp, sz):
 
     cycles, insts = test_single(asm)
 
-    thruput = insts / cycles
+    thruput = cycles / insts
 
     print(f"inverse throughput = {thruput}")
 
