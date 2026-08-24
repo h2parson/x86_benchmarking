@@ -1,0 +1,78 @@
+* Note that lead will mean how many less cycles the optimized code takes
+** lead delta will mean how much bigger the lead is than the last time reported
+
+# 1 MACRO BODY ###########################################################
+Cycles for lines 1 to 236
+Original code:      164
+Optimized code:     126
+
+Lead:               38
+
+# 2 MACRO BODIES #########################################################
+Cycles for lines 1 to 439
+Original code:      305
+Optimized code:     226.5
+
+Lead:               78.5
+Lead Delta:         40.5
+
+# 4 MACRO BODIES #########################################################
+Cycles for lines 1 to 876
+Original code:      605
+Optimized code:     448
+
+Lead:               157
+Lead Delta:         78.5
+
+# 6 MACRO BODIES #########################################################
+Cycles for lines 1 to 1301
+Original code:      899
+Optimized code:     665
+
+Lead:               234
+Lead Delta:         77
+
+# 8 MACRO BODIES #########################################################
+Cycles for lines 1 to 1729
+Original code:      1193
+Optimized code:     881
+
+Lead:               312
+Lead Delta:         78
+
+# 9 MACRO BODIES #########################################################
+Cycles for lines 1 to 1941
+Original code:      1340
+Optimized code:     990
+
+Lead:               350
+Lead Delta:         38
+
+!!!!!!!!!!!!!!!!!!!!!! CRITICAL SECTION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Original code
+Cycles for lines 1 to 2012:    1388
+Cycles for lines 1 to 2013:    1525
+
+Optimized code
+Cycles for lines 1 to 2012:    1026
+Cycles for lines 1 to 2013:    1217
+
+Optimized code
+Cycles for lines 2 to 2013:    1027
+Cycles for lines 2 to 2014:    1229
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+# 10 MACRO BODIES #########################################################
+Cycles for lines 1 to 2154
+Original code:      2708
+Optimized code:     2557
+
+Lead:               151
+Lead Delta:         -199
+
+# WHOLE FILE ##############################################################
+Cycles for lines 1 to 5135
+Original code:      12791.17
+Optimized code:     12816.92
+
+Lead:               -25.75 
