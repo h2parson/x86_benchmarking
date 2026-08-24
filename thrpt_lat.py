@@ -84,23 +84,54 @@ def latency_single(asm_temp, sz):
 
     return latency
 
-one_arg_temp = r"{mn} {0}"
-two_arg_temp = r"{mn} {0}, {1}"
-two_arg_with_imm_temp = r"{mn} {0}, 1"
+one_arg_temp                        = r"{mn} {0}"
+two_arg_temp                        = r"{mn} {0}, {1}"
+two_arg_with_imm_temp               = r"{mn} {0}, 1"
+two_arg_from_ptr_temp               = r"{mn} {0}, {ptr_sz} ptr[{1}]"
+two_arg_to_ptr_temp                 = r"{mn} {ptr_sz} ptr[{0}], {1}"
+two_arg_imm_to_ptr_temp             = r"{mn} {ptr_sz} ptr[{0}], 1"
+two_arg_from_ptr_with_offset_temp   = r"{mn} {0}, {ptr_sz} ptr[{1}+1]"
+two_arg_to_ptr_with_offset_temp     = r"{mn} {ptr_sz} ptr[{0}+1], {1}"
+two_arg_imm_to_ptr_with_offset_temp = r"{mn} {ptr_sz} ptr[{0}+1], 1"
 
 inst_dict = {
-    "add" : two_arg_temp.replace("{mn}","ADD"),
-    "add_with_imm" : two_arg_with_imm_temp.replace("{mn}","ADD"),
-    "mov" : two_arg_temp.replace("{mn}","MOV"),
-    "mov_with_imm" : two_arg_with_imm_temp.replace("{mn}","MOV"),
-    "not" : one_arg_temp.replace("{mn}","NOT"),
-    "or" : two_arg_temp.replace("{mn}","OR"),
-    "or_with_imm" : two_arg_with_imm_temp.replace("{mn}","OR"),
+    # "add"                        : two_arg_temp.replace("{mn}","ADD"),
+    # "add_with_imm"               : two_arg_with_imm_temp.replace("{mn}","ADD"),
+    # "mov"                        : two_arg_temp.replace("{mn}","MOV"),
+    # "mov_with_imm"               : two_arg_with_imm_temp.replace("{mn}","MOV"),
+    "mov_from_ptr"               : two_arg_from_ptr_temp.replace("{mn}", "MOV"),
+    "mov_to_ptr"                 : two_arg_to_ptr_temp.replace("{mn}", "MOV"),
+    "mov_imm_to_ptr"             : two_arg_imm_to_ptr_temp.replace("{mn}", "MOV"),
+    "mov_from_ptr_with_offset"   : two_arg_from_ptr_with_offset_temp.replace("{mn}", "MOV"),
+    "mov_to_ptr_with_offset"     : two_arg_to_ptr_with_offset_temp.replace("{mn}", "MOV"),
+    "mov_imm_to_ptr_with_offset" : two_arg_imm_to_ptr_with_offset_temp.replace("{mn}", "MOV"),
+    "not"                        : one_arg_temp.replace("{mn}","NOT"),
+    "or"                         : two_arg_temp.replace("{mn}","OR"),
+    "pop"                        : one_arg_temp.replace("{mn}","POP"),
+    "push"                       : one_arg_temp.replace("{mn}","PUSH"),
+    "rol_with_imm"               : two_arg_with_imm_temp.replace("{mn}","ROL"),
+    "rol_with_implicit_shift"    : one_arg_temp.replace("{mn}","ROL"),
+    "shr_with_imm"               : two_arg_with_imm_temp.replace("{mn}","SHR"),
+    "sub_with_imm"               : two_arg_with_imm_temp.replace("{mn}","SUB"),
+    "xchg"                       : two_arg_temp.replace("{mn}","XCHG"),
+    "xor_with_imm"               : two_arg_with_imm_temp.replace("{mn}","XOR"),
+    "xor"                        : two_arg_temp.replace("{mn}","XOR"),
+    "xor_from_ptr_with_offset"   : two_arg_from_ptr_with_offset_temp.replace("{mn}", "XOR"),
+    "xor_to_ptr_with_offset"     : two_arg_to_ptr_with_offset_temp.replace("{mn}", "XOR"),
+    "xor_imm_to_ptr_with_offset" : two_arg_imm_to_ptr_with_offset_temp.replace("{mn}", "XOR"),
 }
+
+def replace_ptr_sz(inst, sz):
+    res = inst
+    # I'm only using QW for now so just keep it simple
+    if "{ptr_sz}" in inst:
+        res = inst.replace("{ptr_sz}","qword")
+    return res
 
 def thruputs():
     for name, inst in inst_dict.items():
         print(f"Inverse throughput for instruction {name}:")
+        inst = replace_ptr_sz(inst, "QW")
         thruput_single(inst, "QW")
 
     return
@@ -108,19 +139,15 @@ def thruputs():
 def latencies():
     for name, inst in inst_dict.items():
         print(f"Latency for instruction {name}:")
+        inst = replace_ptr_sz(inst, "QW")
         latency_single(inst, "QW")
 
     return
 
 def main():
-    add_temp = r"ADD {0}, {1}"
-    sz = "QW"
 
     thruputs()
     latencies()
-
-    # with open(out_file, "w") as f:
-    #         f.write(stdout)
 
 if __name__ == "__main__":
     main()

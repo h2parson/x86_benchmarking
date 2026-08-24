@@ -1,3 +1,4 @@
 nanobench_output.txt
 venv/
 translater/__pycache__
+.vscode/
