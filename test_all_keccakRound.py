@@ -1,7 +1,8 @@
 import subprocess
-import sys
 from pathlib import Path
 import csv
+from datetime import datetime
+import os
 
 NANOBENCH_DIR = "../nanoBench" 
 CONFIG = "configs/cfg_Bonnell_common.txt"
@@ -35,14 +36,20 @@ def test(src, unroll=None):
     return {'name':str(src), 'cycles':cycles, 'insts':insts, 'cacherefs':cacherefs}
 
 def main():
+    now = datetime.now()
+    month = now.strftime("%b")
+    day = str(now.day)
+    date = month+day
+
     for unroll in [2]:
-        out = f'results_unroll_{str(unroll)}.csv'
+        out = f'Results/{date}/results_unroll_{str(unroll)}_{date}.csv'
+        os.makedirs(os.path.dirname(out), exist_ok=True)
         with open(out, "w", newline='') as file:
             fieldnames = ['name', 'cycles', 'insts', 'cacherefs']
             writer = csv.DictWriter(file, fieldnames=fieldnames)
             data = []
 
-            for src in ['Code_Translated/Aug19/keccakRound_translated']:
+            for src in [f'Code_Translated/{date}/keccakRound_translated']:
                 src_dir = Path(src)
 
                 files = [p for p in src_dir.iterdir() if p.is_file()]
