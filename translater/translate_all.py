@@ -1,5 +1,6 @@
 import translate as t
 from pathlib import Path
+from itertools import product
 
 def translate(file_path, out_file):
     with open(file_path, "r") as file:
@@ -17,7 +18,14 @@ def translate(file_path, out_file):
                 file.write(line.text)
 
 def main():
-    for src, out in [('keccakRound','keccakRound_translated'),('keccakRound_originals','keccakRound_translated_originals')]:
+    dates = [path.name for path in Path('Code_ATAT').iterdir() if path.is_dir()]
+    folder_endings = ['keccakRound', 'keccakRound_originals']
+    srcs = [Path('Code_ATAT')/Path(date)/Path(folder_ending) for date, folder_ending in product(dates, folder_endings)]
+    folder_endings = ['keccakRound_translated', 'keccakRound_translated_originals']
+    outs = [Path('Code_Translated')/Path(date)/Path(folder_ending) for date, folder_ending in product(dates, folder_endings)]
+    src_outs = zip(srcs, outs)
+    
+    for src, out in src_outs:
         src_dir = Path(src)
         out_dir = Path(out)
 
